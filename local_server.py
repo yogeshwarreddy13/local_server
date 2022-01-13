@@ -2,8 +2,8 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import cgi
 import logging
-from csv_to_db import csv_to_db_func
-from crud_operations_db import view_db_data, delete_db_row, insert_db_row, update_db_row, select_db_row
+from csv_to_db_package.csv_to_db import csv_to_db_func
+from csv_to_db_package.crud_operations_db import view_db_data, delete_db_row, insert_db_row, update_db_row, select_db_row
 from mysql.connector import connect, errors
 
 

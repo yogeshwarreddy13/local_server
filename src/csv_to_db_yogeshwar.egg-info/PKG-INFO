@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: csv-to-db-yogeshwar
+Version: 0.0.1
+Summary: A package for generating data and converting it into different formats
+Home-page: https://github.com/yogeshwarreddy13/local_server
+Author: yogeshwar reddy
+Author-email: yogeshwarreddy905@gmail.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/yogeshwarreddy13/local_server/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+A Python package to send csv data to DataBase and perform CRUD operations.
+

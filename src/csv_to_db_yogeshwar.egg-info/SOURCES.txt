@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+src/csv_to_db_package/__init__.py
+src/csv_to_db_package/crud_operations_db.py
+src/csv_to_db_package/csv_to_db.py
+src/csv_to_db_yogeshwar.egg-info/PKG-INFO
+src/csv_to_db_yogeshwar.egg-info/SOURCES.txt
+src/csv_to_db_yogeshwar.egg-info/dependency_links.txt
+src/csv_to_db_yogeshwar.egg-info/top_level.txt
