@@ -4,7 +4,7 @@ import sys
 import os
 import mysql.connector
 from mysql.connector import errorcode
-import crud_operations_db
+import csv_to_db_package.crud_operations_db
 
 MYSQL_HOST = "localhost"
 MYSQL_DB = "fake_db"
@@ -88,7 +88,7 @@ class MockDB(TestCase):
             'password': MYSQL_PASSWORD,
             'database': MYSQL_DB
         }
-        cls.mock_db_config = patch.dict(CRUD_operations_db.config, testconfig)
+        cls.mock_db_config = patch.dict(csv_to_db_package.crud_operations_db.config, testconfig)
 
     @classmethod
     def tearDownClass(cls):
