@@ -4,6 +4,10 @@ can be used for database table.
 """
 import logging
 from mysql.connector import connect, errors
+import pymysql
+import pandas
+import boto3
+import os
 
 logging.basicConfig(filename='server_info.log', level=logging.INFO,
                     format='%(asctime)s:%(levelname)s:%(message)s')
@@ -42,6 +46,8 @@ def view_db_data(db_name: str, db_table: str):
                     html_table += '<th id="thead_{}">{}</th>'.format(i, columns[i])
                 html_table += '<td><button type="submit" onclick="redirect_to_create()">'\
                               'Create</button></td>'
+                html_table += '<td><button type="submit" onclick="redirect_to_S3()">' \
+                              'store data to S3</button></td>'
                 html_table += '</tr>'
                 for rows, _ in enumerate(data):
                     html_table += '<tr id={}>'.format(rows)
@@ -202,3 +208,16 @@ def select_db_row(db_name: str, db_table: str, object_id):
     except errors.Error as err:
         logging.error('%s: %s', err.__class__.__name__, err)
         raise
+
+
+def upload_to_s3():
+
+    conn = pymysql.connect(host='localhost', user='root', password = 'yogesh1304', db='csvfile_upload')
+    cursor = conn.cursor()
+    query = 'select * from csvfile_data'
+    results = pandas.read_sql_query(query, conn)
+    results.to_csv("output.csv", index=False)
+    s3_client = boto3.client('s3')
+
+    s3_client.upload_file("output.csv", "yogesh-bucket", "myoutput.csv")
+    os.remove("output.csv")
