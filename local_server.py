@@ -2,9 +2,11 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import cgi
 import logging
-from csv_to_db_package.csv_to_db import csv_to_db_func
-from csv_to_db_package.crud_operations_db import view_db_data, delete_db_row, insert_db_row, update_db_row, select_db_row
+from src.csv_to_db_package.csv_to_db import csv_to_db_func
+from src.csv_to_db_package.crud_operations_db import view_db_data, delete_db_row, insert_db_row,\
+    update_db_row, select_db_row, upload_to_s3
 from mysql.connector import connect, errors
+# from src.csv_to_db_package.csv_to_db import csv_to_db_func
 
 
 logging.basicConfig(filename='server_info.log', level=logging.INFO,
@@ -91,7 +93,28 @@ class RequestHandler(BaseHTTPRequestHandler):
                             window.location.href="/add"
                         }
                         </script>"""
+                output += """<script>
+                        function redirect_to_S3()
+                        {
+                            window.location.href="/to_S3"
+                        }
+                        </script>"""
                 output += view_db_data('csvfile_upload', 'csvfile_data')
+                output += '</body></html>'
+
+                self.wfile.write(output.encode())
+
+            if self.path.endswith('/to_S3'):
+                self.send_response(200)
+                self.send_header('content-type', 'text/html')
+                self.end_headers()
+
+                output = ''
+                output += '<html><head><meta charset="utf-8"></head><body>'
+                output += '<form method="POST" enctype="multipart/form-data" action="/to_S3">'
+                output += '<h2>Click to store data in S3</h2>'
+                output += '<input type="submit" value="Upload to S3">'
+                output += '</form>'
                 output += '</body></html>'
 
                 self.wfile.write(output.encode())
@@ -228,6 +251,14 @@ class RequestHandler(BaseHTTPRequestHandler):
                 value_id = self.path[22:]
 
                 delete_db_row('csvfile_upload', 'csvfile_data', value_id)
+                self.send_response(301)
+                self.send_header('content-type', 'text/html')
+                self.send_header('Location', '/viewtable')
+                self.end_headers()
+
+            if self.path.startswith('/to_S3'):
+
+                upload_to_s3()
                 self.send_response(301)
                 self.send_header('content-type', 'text/html')
                 self.send_header('Location', '/viewtable')
