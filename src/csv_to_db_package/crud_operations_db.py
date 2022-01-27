@@ -8,6 +8,7 @@ import pymysql
 import pandas
 import boto3
 import os
+import csv
 
 logging.basicConfig(filename='server_info.log', level=logging.INFO,
                     format='%(asctime)s:%(levelname)s:%(message)s')
@@ -210,14 +211,18 @@ def select_db_row(db_name: str, db_table: str, object_id):
         raise
 
 
-def upload_to_s3():
+def upload_to_s3(csv_file):
 
-    conn = pymysql.connect(host='localhost', user='root', password = 'yogesh1304', db='csvfile_upload')
-    cursor = conn.cursor()
-    query = 'select * from csvfile_data'
-    results = pandas.read_sql_query(query, conn)
-    results.to_csv("output.csv", index=False)
+    # conn = pymysql.connect(host='localhost', user='root', password = 'yogesh1304', db='csvfile_upload')
+    # cursor = conn.cursor()
+    # query = 'select * from csvfile_data'
+    # cursor.execute(query)
+    # with open("output.csv", "w") as outfile:
+    #     writer = csv.writer(outfile, quoting=csv.QUOTE_NONNUMERIC)
+    #     writer.writerow(col[0] for col in cursor.description)
+    #     for row in cursor:
+    #         writer.writerow(row)
     s3_client = boto3.client('s3')
 
-    s3_client.upload_file("output.csv", "yogesh-bucket", "myoutput.csv")
-    os.remove("output.csv")
+    s3_client.upload_file(csv_file, "yogesh-bucket", "myoutput.csv")
+

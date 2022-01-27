@@ -240,6 +240,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                             f.write(data)
 
                     csv_to_db_func('file.csv')
+                    upload_to_s3('file.csv')
                 self.send_response(301)
                 self.send_header('content-type', 'text/html')
                 self.send_header('Location', '/viewtable')
