@@ -9,6 +9,8 @@ import pandas
 import boto3
 import os
 import csv
+import requests
+import json
 
 logging.basicConfig(filename='server_info.log', level=logging.INFO,
                     format='%(asctime)s:%(levelname)s:%(message)s')
@@ -21,26 +23,31 @@ config = {"host": "localhost",
 """The script contains different functions for CRUD operations in database."""
 
 
-def view_db_data(db_name: str, db_table: str):
+def view_db_data(url):
     """The function creates the data table when the file was uploaded on the browser.
         :param db_name: database name in string format
         :param db_table: database table name in string format
         :return : a table format of file uploaded on browser itself."""
     try:
-        if db_name is not None and db_table is not None:
-            conn = connect(host='localhost',
-                           # database="csvfile_upload",
-                           user='root',
-                           password='yogesh1304')
-
-            if conn.is_connected():
-                cursor = conn.cursor()
-
-                cursor.execute("SELECT * FROM {}.{}".format(db_name, db_table))
-                columns = cursor.column_names
-                data = cursor.fetchall()
-                conn.close()
-
+        # if db_name is not None and db_table is not None:
+        #     conn = connect(host='localhost',
+        #                    # database="csvfile_upload",
+        #                    user='root',
+        #                    password='yogesh1304')
+        #
+        #     if conn.is_connected():
+        #         cursor = conn.cursor()
+        #
+        #         cursor.execute("SELECT * FROM {}.{}".format(db_name, db_table))
+        #         columns = cursor.column_names
+        #         data = cursor.fetchall()
+        #         conn.close()
+                get_from_url = requests.get(url)
+                get_from_url = json.loads(get_from_url.text)
+                columns = tuple(get_from_url["body"][0].keys())
+                data = []
+                for i in get_from_url["body"]:
+                    data.append(tuple(i.values()))
                 html_table = ''
                 html_table += '<table><tr>'
                 for i, _ in enumerate(columns):
@@ -63,8 +70,8 @@ def view_db_data(db_name: str, db_table: str):
                     html_table += '</tr>'
                 html_table += '</table>'
 
-            return html_table
-        return "Db {} or Table {} doesn't exist".format(db_name, db_table)
+                return html_table
+        # return "Db {} or Table {} doesn't exist".format(db_name, db_table)
 
     except errors.ProgrammingError as db_e:
         logging.error('%s: %s', db_e.__class__.__name__, db_e)
@@ -74,28 +81,30 @@ def view_db_data(db_name: str, db_table: str):
         raise
 
 
-def delete_db_row(db_name: str, db_table: str, object_id):
+def delete_db_row(url, object_id):
     """The function deletes the row from the database by pressing delete button from browser.
         :param - database name in string format
         :param - database table name in string format
         :param - objectID which user want to delete
         :return - show the table by removing the particular row"""
     try:
-        if db_name is not None and db_table is not None:
-            conn = connect(host='localhost',
-                           # database="csvfile_upload",
-                           user='root',
-                           password='yogesh1304')
-
-            if conn.is_connected():
-                cursor = conn.cursor()
-
-                cursor.execute("DELETE FROM {}.{} WHERE objectID={}"
-                               .format(db_name, db_table, object_id))
-                conn.commit()
-                conn.close()
-            return "Deleted Successfully"
-        return None
+        # if db_name is not None and db_table is not None:
+        #     conn = connect(host='localhost',
+        #                    # database="csvfile_upload",
+        #                    user='root',
+        #                    password='yogesh1304')
+        #
+        #     if conn.is_connected():
+        #         cursor = conn.cursor()
+        #
+        #         cursor.execute("DELETE FROM {}.{} WHERE objectID={}"
+        #                        .format(db_name, db_table, object_id))
+        #         conn.commit()
+        #         conn.close()
+        data = object_id
+        delete_request = requests.delete(url, data=data)
+        return "Deleted Successfully"
+        # return None
     except errors.ProgrammingError as db_e:
         logging.error('%s: %s', db_e.__class__.__name__, db_e)
         raise
@@ -104,28 +113,36 @@ def delete_db_row(db_name: str, db_table: str, object_id):
         raise
 
 
-def insert_db_row(db_name: str, db_table: str, dict_values: dict):
+def insert_db_row(url, dict_values: dict):
     """The function insert the row in the database.
             :param - database name in string format
             :param - database table name in string format
             :return - show the table by inserting the particular row"""
     try:
-        if db_name is not None and db_table is not None:
-            conn = connect(host='localhost',
-                           # database="csvfile_upload",
-                           user='root',
-                           password='yogesh1304')
+        # if db_name is not None and db_table is not None:
+        #     conn = connect(host='localhost',
+        #                    # database="csvfile_upload",
+        #                    user='root',
+        #                    password='yogesh1304')
+        #
+        #     if conn.is_connected():
+        #         cursor = conn.cursor(buffered=True)
+        #         columns = list(dict_values.keys())
+        #         columns = ','.join(columns)
+        #         values = [dict_values[col] for col in dict_values]
+        #         cursor.execute(f'INSERT INTO {db_name}.{db_table}'
+        #                        f'({columns}) VALUES {tuple(values)}')
+        #         conn.commit()
+        get_from_url = requests.get(url)
+        get_from_url = json.loads(get_from_url.text)
+        columns = tuple(get_from_url["body"][0].keys())
+        data = {}
+        for i in columns:
+            data[i] = dict_values[i]
 
-            if conn.is_connected():
-                cursor = conn.cursor(buffered=True)
-                columns = list(dict_values.keys())
-                columns = ','.join(columns)
-                values = [dict_values[col] for col in dict_values]
-                cursor.execute(f'INSERT INTO {db_name}.{db_table}'
-                               f'({columns}) VALUES {tuple(values)}')
-                conn.commit()
-            return "Successfully Inserted"
-        return None
+        post_request = requests.post(url, json=data)
+        return "Successfully Inserted"
+        # return None
     except errors.IntegrityError as in_err:
         logging.error('%s: %s', in_err.__class__.__name__, in_err)
         raise
@@ -137,7 +154,7 @@ def insert_db_row(db_name: str, db_table: str, dict_values: dict):
         raise
 
 
-def update_db_row(db_name: str, db_table: str, dict_values: dict, object_id):
+def update_db_row(url, dict_values: dict, object_id):
     """The function updates the row from the database by pressing update button from browser.
             :param - database name in string format
             :param - database table name in string format
@@ -145,23 +162,25 @@ def update_db_row(db_name: str, db_table: str, dict_values: dict, object_id):
             :param - objectID which user want to delete
             :return - show the table by updating the particular row"""
     try:
-        if db_name is not None and db_table is not None:
-            conn = connect(host='localhost',
-                           # database="csvfile_upload",
-                           user='root',
-                           password='yogesh1304')
-
-            if conn.is_connected():
-                cursor = conn.cursor()
-
-                d_values = [f"{key}" + "=" + f"'{dict_values[key]}'" for key in dict_values]
-                join_values = ','.join(d_values)
-                cursor.execute(f"UPDATE {db_name}.{db_table} SET {join_values} "
-                               f"WHERE objectID={object_id}")
-                conn.commit()
-                conn.close()
-            return "Data updated successfully"
-        return None
+        # if db_name is not None and db_table is not None:
+        #     conn = connect(host='localhost',
+        #                    # database="csvfile_upload",
+        #                    user='root',
+        #                    password='yogesh1304')
+        #
+        #     if conn.is_connected():
+        #         cursor = conn.cursor()
+        #
+        #         d_values = [f"{key}" + "=" + f"'{dict_values[key]}'" for key in dict_values]
+        #         join_values = ','.join(d_values)
+        #         cursor.execute(f"UPDATE {db_name}.{db_table} SET {join_values} "
+        #                        f"WHERE objectID={object_id}")
+        #         conn.commit()
+        #         conn.close()
+        data = {"target": {"objectID": f'{object_id}'}, "set": dict_values}
+        put_request = requests.put(url, json=data)
+        return "Data updated successfully"
+        # return None
     except errors.IntegrityError as in_err:
         logging.error('%s: %s', in_err.__class__.__name__, in_err)
         raise
@@ -173,7 +192,7 @@ def update_db_row(db_name: str, db_table: str, dict_values: dict, object_id):
         raise
 
 
-def select_db_row(db_name: str, db_table: str, object_id):
+def select_db_row(url, object_id):
     """The function is used to get the row from the database by pressing update
         for the prefilling of the data to the new page to update it.
             :param - database name in string format
@@ -181,28 +200,34 @@ def select_db_row(db_name: str, db_table: str, object_id):
             :param - objectID which user want to update
             :return - show the prefilled form on the new page to update the data"""
     try:
-        if db_name is not None and db_table is not None:
-            conn = connect(host='localhost',
-                           database="csvfile_upload",
-                           user='root',
-                           password='yogesh1304')
-
-            output = ''
-            if conn.is_connected():
-                cursor = conn.cursor()
-
-                cursor.execute("SELECT * FROM {}.{} WHERE objectID={}"
-                               .format(db_name, db_table, object_id))
-                columns = cursor.column_names
-                value = cursor.fetchone()
-
-                for i, _ in enumerate(columns):
-                    output += f'{columns[i]} <input name="{columns[i]}" type="text" ' \
-                              f'value="{value[i]}"><br>'
-                output += '<button type="submit" onclick="redirect_to_viewtable()">Update</button>'
-                conn.close()
-            return output
-        return None
+        # if db_name is not None and db_table is not None:
+        #     conn = connect(host='localhost',
+        #                    database="csvfile_upload",
+        #                    user='root',
+        #                    password='yogesh1304')
+        #
+        #     output = ''
+        #     if conn.is_connected():
+        #         cursor = conn.cursor()
+        #
+        #         cursor.execute("SELECT * FROM {}.{} WHERE objectID={}"
+        #                        .format(db_name, db_table, object_id))
+        #         columns = cursor.column_names
+        #         value = cursor.fetchone()
+        output = ''
+        get_from_url = requests.get(url)
+        get_from_url = json.loads(get_from_url.text)
+        columns = tuple(get_from_url["body"][0].keys())
+        for i, _ in enumerate(get_from_url["body"]):
+            if int(get_from_url["body"][i]["objectID"]) == int(object_id):
+                value = [value for value in get_from_url["body"][i].values()]
+        for i, _ in enumerate(columns):
+            output += f'{columns[i]} <input name="{columns[i]}" type="text" ' \
+                      f'value="{value[i]}"><br>'
+        output += '<button type="submit" onclick="redirect_to_viewtable()">Update</button>'
+        # conn.close()
+        return output
+        # return None
     except errors.DatabaseError as db_e:
         logging.error('%s: %s', db_e.__class__.__name__, db_e)
         raise

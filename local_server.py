@@ -110,7 +110,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                             window.location.href="/to_S3"
                         }
                         </script>"""
-                output += view_db_data('csvfile_upload', 'csvfile_data')
+                output += view_db_data("https://w101gqjv56.execute-api.ap-south-1.amazonaws.com/test/s3-json-data")
                 output += '</body></html>'
 
                 self.wfile.write(output.encode())
@@ -193,7 +193,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                 output += 'tags: <input name="tags" type="text"><br><br>'
                 output += 'objectWikidata_URL: <input name="objectWikidata_URL" type="text"><br><br>'
                 output += 'isTimelineWork: <input name="isTimelineWork" type="text"><br><br>'
-                output += 'galleryNumber: <input name="galleryNumber" type="text"><br><br>'
+                output += 'GalleryNumber: <input name="GalleryNumber" type="text"><br><br>'
                 output += 'constituentID: <input name="constituentID" type="text"><br><br>'
                 output += 'role: <input name="role" type="text"><br><br>'
                 output += 'name: <input name="name" type="text"><br><br>'
@@ -216,7 +216,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                 output = ''
                 output += '<html><body>'
                 output += '<form method="POST" enctype="multipart/form-data" action="/update_data">'
-                output += select_db_row('csvfile_upload', 'csvfile_data', int(value))
+                output += select_db_row("https://w101gqjv56.execute-api.ap-south-1.amazonaws.com/test/s3-json-data", int(value))
                 output += """<script>
                                     function redirect_to_viewtable()
                                     {
@@ -253,7 +253,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                     df = pd.read_csv('file.csv')
                     df.to_json('jsondata.json', orient='records')
                     put_object_to_s3('jsondata.json')
-                    csv_to_db_func('file.csv')
+                    # csv_to_db_func('file.csv')
                     # upload_to_s3('file.csv')
                 self.send_response(301)
                 self.send_header('content-type', 'text/html')
@@ -265,13 +265,13 @@ class RequestHandler(BaseHTTPRequestHandler):
             if self.path.startswith('/delete_data'):
                 value_id = self.path[22:]
 
-                delete_db_row('csvfile_upload', 'csvfile_data', value_id)
-                with open("jsondata.json", "r") as jsonFile:
-                    data = json.load(jsonFile)
-                    data = [i for i in data if not (i['objectID'] == int(value_id))]
-                with open("jsondata.json", "w") as jsonFile:
-                    json.dump(data, jsonFile)
-                put_object_to_s3('jsondata.json')
+                delete_db_row("https://w101gqjv56.execute-api.ap-south-1.amazonaws.com/test/s3-json-data", value_id)
+                # with open("jsondata.json", "r") as jsonFile:
+                #     data = json.load(jsonFile)
+                #     data = [i for i in data if not (i['objectID'] == int(value_id))]
+                # with open("jsondata.json", "w") as jsonFile:
+                #     json.dump(data, jsonFile)
+                # put_object_to_s3('jsondata.json')
                 self.send_response(301)
                 self.send_header('content-type', 'text/html')
                 self.send_header('Location', '/viewtable')
@@ -317,16 +317,16 @@ class RequestHandler(BaseHTTPRequestHandler):
                             fields[key] = fields[key][0]
 
                         print(fields)
-                        insert_db_row('csvfile_upload', 'csvfile_data', fields)
+                        insert_db_row("https://w101gqjv56.execute-api.ap-south-1.amazonaws.com/test/s3-json-data", fields)
 
-                        with open('jsondata.json') as json_file:
-                            obj_list = json.load(json_file)
-                        obj_list.append(fields)
-                        with open('jsondata.json', 'w') as json_file:
-                            json.dump(obj_list, json_file,
-                                      indent=4,
-                                      separators=(',', ': '))
-                        put_object_to_s3('jsondata.json')
+                        # with open('jsondata.json') as json_file:
+                        #     obj_list = json.load(json_file)
+                        # obj_list.append(fields)
+                        # with open('jsondata.json', 'w') as json_file:
+                        #     json.dump(obj_list, json_file,
+                        #               indent=4,
+                        #               separators=(',', ': '))
+                        # put_object_to_s3('jsondata.json')
 
                 self.send_response(301)
                 self.send_header('content-type', 'text/html')
@@ -340,48 +340,49 @@ class RequestHandler(BaseHTTPRequestHandler):
                 pdict['CONTENT-LENGTH'] = content_len
                 if ctype == 'multipart/form-data':
                     fields = cgi.parse_multipart(self.rfile, pdict)
-                    conn = connect(host='localhost',
-                                   database="csvfile_upload",
-                                   user='root',
-                                   password='yogesh1304')
+                    # conn = connect(host='localhost',
+                    #                database="csvfile_upload",
+                    #                user='root',
+                    #                password='yogesh1304')
+                    #
+                    # if conn.is_connected():
+                    #     cursor = conn.cursor()
+                    #     query = "SELECT objectId From csvfile_upload.csvfile_data"
+                    #     cursor.execute(query)
+                    #     primary_keys = cursor.fetchall()
+                    #     primary_key = fields['objectId']
+                    #     list1 = []
+                    #     for i in range(len(primary_keys)):
+                    #         list1.append(i)
+                    #     list2 = []
+                    #     for i in range(len(list1)):
+                    #         list2.append(str(primary_keys[i][0]))
+                    #     if primary_key[0] in list2:
 
-                    if conn.is_connected():
-                        cursor = conn.cursor()
-                        query = "SELECT objectId From csvfile_upload.csvfile_data"
-                        cursor.execute(query)
-                        primary_keys = cursor.fetchall()
-                        primary_key = fields['objectId']
-                        list1 = []
-                        for i in range(len(primary_keys)):
-                            list1.append(i)
-                        list2 = []
-                        for i in range(len(list1)):
-                            list2.append(str(primary_keys[i][0]))
-                        if primary_key[0] in list2:
+                    for key in fields:
+                        fields[key] = fields[key][0]
+                    update_db_row("https://w101gqjv56.execute-api.ap-south-1.amazonaws.com/test/s3-json-data", fields, int(fields['objectID']))
 
-                            for key in fields:
-                                fields[key] = fields[key][0]
-                            update_db_row('csvfile_upload', 'csvfile_data', fields, int(fields['objectId']))
-                            with open("jsondata.json", "r") as jsonFile:
-                                data = json.load(jsonFile)
-                                for i in data:
-                                    if int(fields['objectId']) == i['objectID']:
-                                        i.update(fields)
-                            with open("jsondata.json", "w") as jsonFile:
-                                json.dump(data, jsonFile)
-                            put_object_to_s3('jsondata.json')
-                        else:
-                            self.send_response(200)
-                            self.send_header('content-type', 'text/html')
-                            self.end_headers()
-
-                            output = ''
-                            output += '<html><head><meta charset="utf-8"></head><body>'
-                            output += '<h2>You cannot update primary key</h2>'
-                            output += '<h3><a href="/viewtable">Back to viewtable</a></h3>'
-                            output += '</body></html>'
-
-                            self.wfile.write(output.encode())
+                    #     with open("jsondata.json", "r") as jsonFile:
+                    #         data = json.load(jsonFile)
+                    #         for i in data:
+                    #             if int(fields['objectId']) == i['objectID']:
+                    #                 i.update(fields)
+                    #     with open("jsondata.json", "w") as jsonFile:
+                    #         json.dump(data, jsonFile)
+                    #     put_object_to_s3('jsondata.json')
+                    # else:
+                    #     self.send_response(200)
+                    #     self.send_header('content-type', 'text/html')
+                    #     self.end_headers()
+                    #
+                    #     output = ''
+                    #     output += '<html><head><meta charset="utf-8"></head><body>'
+                    #     output += '<h2>You cannot update primary key</h2>'
+                    #     output += '<h3><a href="/viewtable">Back to viewtable</a></h3>'
+                    #     output += '</body></html>'
+                    #
+                    #     self.wfile.write(output.encode())
 
                 self.send_response(301)
                 self.send_header('content-type', 'text/html')

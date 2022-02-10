@@ -285,3 +285,73 @@ accessio' at line 1
 2022-02-10 11:53:14,184:INFO:Creating table....
 2022-02-10 11:53:14,236:INFO:Table is created....
 2022-02-10 11:56:10,678:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 14:05:34,156:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 14:05:50,007:INFO:Welcome to csv func
+2022-02-10 14:05:50,191:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 14:05:50,351:INFO:Creating table....
+2022-02-10 14:05:50,415:INFO:Table is created....
+2022-02-10 14:06:19,418:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 14:06:30,306:INFO:Welcome to csv func
+2022-02-10 14:06:30,386:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 14:06:30,466:INFO:Creating table....
+2022-02-10 14:06:30,522:INFO:Table is created....
+2022-02-10 14:33:03,103:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 14:33:33,845:INFO:Welcome to csv func
+2022-02-10 14:33:34,037:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 14:33:34,213:INFO:Creating table....
+2022-02-10 14:33:34,269:INFO:Table is created....
+2022-02-10 15:15:13,200:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 15:15:48,098:ERROR:TypeError: delete() takes 1 positional argument but 2 were given
+2022-02-10 15:16:07,252:ERROR:TypeError: delete() takes 1 positional argument but 2 were given
+2022-02-10 15:21:39,188:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 15:54:34,639:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 15:56:21,238:ERROR:TypeError: 'Response' object is not subscriptable
+2022-02-10 15:57:39,876:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 16:07:50,307:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 16:11:56,751:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 16:20:40,109:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 16:24:45,237:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 16:26:17,607:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 18:28:35,917:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 18:40:49,090:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 18:46:14,976:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 18:47:46,225:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 18:47:58,650:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 18:48:02,438:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 18:48:08,118:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 18:48:16,013:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 18:50:09,182:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 18:51:05,526:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 18:51:12,847:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 18:52:09,957:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 18:53:52,122:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 19:05:20,812:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 19:11:56,518:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 19:23:13,631:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 19:24:49,402:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 19:27:57,940:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 19:32:10,304:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 19:35:20,727:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 19:35:43,295:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 19:35:58,275:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 19:36:22,541:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 19:38:03,655:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 21:52:26,194:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 21:55:18,374:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 21:57:26,142:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 22:00:28,899:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 22:27:50,888:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 22:48:21,749:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 22:51:29,281:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 22:56:26,150:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 22:58:11,735:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 23:01:54,355:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 23:05:13,033:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 23:11:30,705:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 23:23:35,179:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-11 00:15:43,571:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-11 00:17:40,103:ERROR:KeyError: 'objectId'
+2022-02-11 00:22:30,082:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-11 00:23:52,989:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-11 00:31:04,887:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-11 00:32:52,795:INFO:Found credentials in shared credentials file: ~/.aws/credentials
