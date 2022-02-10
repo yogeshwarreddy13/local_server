@@ -161,3 +161,197 @@ accessio' at line 1
 2022-01-27 09:31:52,871:INFO:Table is created....
 2022-01-27 09:31:53,170:ERROR:DataError: 1406 (22001): Data too long for column 'primaryImage' at row 1
 2022-01-27 09:31:53,299:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-01 00:38:17,671:INFO:Welcome to csv func
+2022-02-01 00:38:17,984:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-01 00:38:18,268:INFO:Creating table....
+2022-02-01 00:38:18,365:INFO:Table is created....
+2022-02-01 00:38:18,636:ERROR:DataError: 1406 (22001): Data too long for column 'primaryImage' at row 1
+2022-02-01 00:38:18,721:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-01 00:41:08,878:INFO:Welcome to csv func
+2022-02-01 00:41:09,056:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-01 00:41:09,186:INFO:Creating table....
+2022-02-01 00:41:09,260:INFO:Table is created....
+2022-02-01 00:41:09,526:ERROR:DataError: 1406 (22001): Data too long for column 'primaryImage' at row 1
+2022-02-01 00:41:09,584:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-01 01:07:53,015:INFO:Welcome to csv func
+2022-02-01 01:07:53,186:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-01 01:07:53,336:INFO:Creating table....
+2022-02-01 01:07:53,401:INFO:Table is created....
+2022-02-01 01:07:53,799:ERROR:DataError: 1406 (22001): Data too long for column 'primaryImage' at row 1
+2022-02-01 01:07:53,838:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 10:21:13,612:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 10:21:31,700:INFO:Welcome to csv func
+2022-02-10 10:21:31,891:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 10:21:32,105:INFO:Creating table....
+2022-02-10 10:21:32,174:INFO:Table is created....
+2022-02-10 10:21:32,410:ERROR:DataError: 1406 (22001): Data too long for column 'primaryImage' at row 1
+2022-02-10 10:30:56,033:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 10:31:10,184:INFO:Welcome to csv func
+2022-02-10 10:31:10,306:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 10:31:10,422:INFO:Creating table....
+2022-02-10 10:31:10,471:INFO:Table is created....
+2022-02-10 10:31:10,505:ERROR:IntegrityError: 1062 (23000): Duplicate entry '0' for key 'csvfile_data.PRIMARY'
+2022-02-10 10:40:52,856:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 10:44:43,133:INFO:Welcome to csv func
+2022-02-10 10:44:43,351:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 10:44:43,476:INFO:Creating table....
+2022-02-10 10:44:43,570:INFO:Table is created....
+2022-02-10 10:44:43,617:ERROR:IntegrityError: 1062 (23000): Duplicate entry '0' for key 'csvfile_data.PRIMARY'
+2022-02-10 10:47:31,160:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 10:47:50,691:INFO:Welcome to csv func
+2022-02-10 10:47:50,811:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 10:47:50,935:INFO:Creating table....
+2022-02-10 10:47:50,997:INFO:Table is created....
+2022-02-10 10:47:51,014:ERROR:DataError: 1136 (21S01): Column count doesn't match value count at row 1
+2022-02-10 10:48:11,880:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 10:48:33,785:INFO:Welcome to csv func
+2022-02-10 10:48:33,869:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 10:48:33,955:INFO:Creating table....
+2022-02-10 10:48:34,002:INFO:Table is created....
+2022-02-10 10:48:34,013:ERROR:DataError: 1136 (21S01): Column count doesn't match value count at row 1
+2022-02-10 10:50:31,125:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 10:51:02,513:INFO:Welcome to csv func
+2022-02-10 10:51:02,648:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 10:51:02,743:INFO:Creating table....
+2022-02-10 10:51:02,796:INFO:Table is created....
+2022-02-10 10:51:02,807:ERROR:DataError: 1136 (21S01): Column count doesn't match value count at row 1
+2022-02-10 10:52:04,734:INFO:Welcome to csv func
+2022-02-10 10:52:04,757:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 10:52:04,797:INFO:Creating table....
+2022-02-10 10:52:04,842:INFO:Table is created....
+2022-02-10 10:52:04,849:ERROR:DataError: 1136 (21S01): Column count doesn't match value count at row 1
+2022-02-10 10:55:38,203:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 10:55:50,179:ERROR:ConnectionAbortedError: [WinError 10053] An established connection was aborted by the software in your host machine
+2022-02-10 10:56:32,352:INFO:Welcome to csv func
+2022-02-10 10:58:22,545:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 10:58:29,001:INFO:Creating table....
+2022-02-10 10:58:39,930:INFO:Table is created....
+2022-02-10 11:02:00,824:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 11:02:21,962:INFO:Welcome to csv func
+2022-02-10 11:02:39,273:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 11:02:40,820:INFO:Creating table....
+2022-02-10 11:02:42,757:INFO:Table is created....
+2022-02-10 11:12:10,281:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 11:12:40,384:INFO:Welcome to csv func
+2022-02-10 11:13:01,685:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 11:13:03,356:INFO:Creating table....
+2022-02-10 11:13:05,028:INFO:Table is created....
+2022-02-10 11:14:12,335:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 11:14:39,341:INFO:Welcome to csv func
+2022-02-10 11:14:48,964:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 11:14:50,307:INFO:Creating table....
+2022-02-10 11:14:51,432:INFO:Table is created....
+2022-02-10 11:22:43,214:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 11:22:53,870:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 11:23:04,322:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 11:23:34,399:INFO:Welcome to csv func
+2022-02-10 11:23:52,924:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 11:23:57,100:INFO:Creating table....
+2022-02-10 11:24:02,496:INFO:Table is created....
+2022-02-10 11:26:13,141:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 11:26:31,989:INFO:Welcome to csv func
+2022-02-10 11:26:42,420:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 11:26:43,279:INFO:Creating table....
+2022-02-10 11:26:44,826:INFO:Table is created....
+2022-02-10 11:27:35,397:ERROR:IntegrityError: 1062 (23000): Duplicate entry '0' for key 'csvfile_data.PRIMARY'
+2022-02-10 11:31:05,558:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 11:31:19,837:INFO:Welcome to csv func
+2022-02-10 11:31:33,544:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 11:31:34,489:INFO:Creating table....
+2022-02-10 11:31:35,691:INFO:Table is created....
+2022-02-10 11:34:21,421:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 11:34:36,407:INFO:Welcome to csv func
+2022-02-10 11:34:36,521:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 11:34:36,633:INFO:Creating table....
+2022-02-10 11:34:36,688:INFO:Table is created....
+2022-02-10 11:36:28,331:ERROR:KeyError: 'objectID'
+2022-02-10 11:36:44,587:ERROR:KeyError: 'objectID'
+2022-02-10 11:36:52,347:ERROR:KeyError: 'objectID'
+2022-02-10 11:38:53,297:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 11:39:12,447:INFO:Welcome to csv func
+2022-02-10 11:39:15,039:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 11:39:15,164:INFO:Creating table....
+2022-02-10 11:39:15,227:INFO:Table is created....
+2022-02-10 11:41:33,541:ERROR:KeyError: 'objectID'
+2022-02-10 11:43:18,128:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 11:43:46,701:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 11:43:56,375:INFO:Welcome to csv func
+2022-02-10 11:43:56,505:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 11:43:56,634:INFO:Creating table....
+2022-02-10 11:43:56,694:INFO:Table is created....
+2022-02-10 11:52:59,867:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 11:53:13,949:INFO:Welcome to csv func
+2022-02-10 11:53:14,067:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 11:53:14,184:INFO:Creating table....
+2022-02-10 11:53:14,236:INFO:Table is created....
+2022-02-10 11:56:10,678:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 14:05:34,156:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 14:05:50,007:INFO:Welcome to csv func
+2022-02-10 14:05:50,191:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 14:05:50,351:INFO:Creating table....
+2022-02-10 14:05:50,415:INFO:Table is created....
+2022-02-10 14:06:19,418:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 14:06:30,306:INFO:Welcome to csv func
+2022-02-10 14:06:30,386:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 14:06:30,466:INFO:Creating table....
+2022-02-10 14:06:30,522:INFO:Table is created....
+2022-02-10 14:33:03,103:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 14:33:33,845:INFO:Welcome to csv func
+2022-02-10 14:33:34,037:INFO:You're connected to database: ('csvfile_upload',)
+2022-02-10 14:33:34,213:INFO:Creating table....
+2022-02-10 14:33:34,269:INFO:Table is created....
+2022-02-10 15:15:13,200:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 15:15:48,098:ERROR:TypeError: delete() takes 1 positional argument but 2 were given
+2022-02-10 15:16:07,252:ERROR:TypeError: delete() takes 1 positional argument but 2 were given
+2022-02-10 15:21:39,188:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 15:54:34,639:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 15:56:21,238:ERROR:TypeError: 'Response' object is not subscriptable
+2022-02-10 15:57:39,876:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 16:07:50,307:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 16:11:56,751:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 16:20:40,109:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 16:24:45,237:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 16:26:17,607:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 18:28:35,917:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 18:40:49,090:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 18:46:14,976:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 18:47:46,225:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 18:47:58,650:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 18:48:02,438:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 18:48:08,118:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 18:48:16,013:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 18:50:09,182:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 18:51:05,526:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 18:51:12,847:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 18:52:09,957:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 18:53:52,122:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 19:05:20,812:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 19:11:56,518:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 19:23:13,631:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 19:24:49,402:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 19:27:57,940:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 19:32:10,304:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 19:35:20,727:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 19:35:43,295:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 19:35:58,275:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 19:36:22,541:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 19:38:03,655:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 21:52:26,194:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 21:55:18,374:ERROR:AttributeError: 'str' object has no attribute 'values'
+2022-02-10 21:57:26,142:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 22:00:28,899:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 22:27:50,888:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 22:48:21,749:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 22:51:29,281:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 22:56:26,150:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 22:58:11,735:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 23:01:54,355:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 23:05:13,033:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 23:11:30,705:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-10 23:23:35,179:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-11 00:15:43,571:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-11 00:17:40,103:ERROR:KeyError: 'objectId'
+2022-02-11 00:22:30,082:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-11 00:23:52,989:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-11 00:31:04,887:INFO:Found credentials in shared credentials file: ~/.aws/credentials
+2022-02-11 00:32:52,795:INFO:Found credentials in shared credentials file: ~/.aws/credentials
