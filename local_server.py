@@ -2,15 +2,26 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import cgi
 import logging
+import pandas as pd
+import json
 from src.csv_to_db_package.csv_to_db import csv_to_db_func
 from src.csv_to_db_package.crud_operations_db import view_db_data, delete_db_row, insert_db_row,\
     update_db_row, select_db_row, upload_to_s3
 from mysql.connector import connect, errors
+import boto3
 # from src.csv_to_db_package.csv_to_db import csv_to_db_func
 
+api_endpoint = "https://w101gqjv56.execute-api.ap-south-1.amazonaws.com/test/s3-json-data"
 
 logging.basicConfig(filename='server_info.log', level=logging.INFO,
                     format='%(asctime)s:%(levelname)s:%(message)s')
+
+s3 = boto3.client('s3')
+
+
+def put_object_to_s3(filename):
+    with open(filename, 'rb') as file:
+        result = s3.put_object(Bucket='yogesh-lambda-bucket', Key=filename, Body=file.read())
 
 
 class RequestHandler(BaseHTTPRequestHandler):
@@ -239,8 +250,11 @@ class RequestHandler(BaseHTTPRequestHandler):
                         for data in file.split('\r\r'):
                             f.write(data)
 
+                    df = pd.read_csv('file.csv')
+                    df.to_json('jsondata.json', orient='records')
+                    put_object_to_s3('jsondata.json')
                     csv_to_db_func('file.csv')
-                    upload_to_s3('file.csv')
+                    # upload_to_s3('file.csv')
                 self.send_response(301)
                 self.send_header('content-type', 'text/html')
                 self.send_header('Location', '/viewtable')
@@ -252,6 +266,12 @@ class RequestHandler(BaseHTTPRequestHandler):
                 value_id = self.path[22:]
 
                 delete_db_row('csvfile_upload', 'csvfile_data', value_id)
+                with open("jsondata.json", "r") as jsonFile:
+                    data = json.load(jsonFile)
+                    data = [i for i in data if not (i['objectID'] == int(value_id))]
+                with open("jsondata.json", "w") as jsonFile:
+                    json.dump(data, jsonFile)
+                put_object_to_s3('jsondata.json')
                 self.send_response(301)
                 self.send_header('content-type', 'text/html')
                 self.send_header('Location', '/viewtable')
@@ -268,9 +288,11 @@ class RequestHandler(BaseHTTPRequestHandler):
             if self.path.endswith('/add'):
                 ctype, pdict = cgi.parse_header(self.headers.get('content-type'))
                 pdict['boundary'] = bytes(pdict['boundary'], "utf-8")
+                saviour = pdict['boundary']
                 content_len = int(self.headers.get('Content-length'))
                 pdict['CONTENT-LENGTH'] = content_len
                 if ctype == 'multipart/form-data':
+                    guess = self.rfile
                     fields = cgi.parse_multipart(self.rfile, pdict)
                     i=0
                     for key in fields:
@@ -296,6 +318,15 @@ class RequestHandler(BaseHTTPRequestHandler):
 
                         print(fields)
                         insert_db_row('csvfile_upload', 'csvfile_data', fields)
+
+                        with open('jsondata.json') as json_file:
+                            obj_list = json.load(json_file)
+                        obj_list.append(fields)
+                        with open('jsondata.json', 'w') as json_file:
+                            json.dump(obj_list, json_file,
+                                      indent=4,
+                                      separators=(',', ': '))
+                        put_object_to_s3('jsondata.json')
 
                 self.send_response(301)
                 self.send_header('content-type', 'text/html')
@@ -331,6 +362,14 @@ class RequestHandler(BaseHTTPRequestHandler):
                             for key in fields:
                                 fields[key] = fields[key][0]
                             update_db_row('csvfile_upload', 'csvfile_data', fields, int(fields['objectId']))
+                            with open("jsondata.json", "r") as jsonFile:
+                                data = json.load(jsonFile)
+                                for i in data:
+                                    if int(fields['objectId']) == i['objectID']:
+                                        i.update(fields)
+                            with open("jsondata.json", "w") as jsonFile:
+                                json.dump(data, jsonFile)
+                            put_object_to_s3('jsondata.json')
                         else:
                             self.send_response(200)
                             self.send_header('content-type', 'text/html')
